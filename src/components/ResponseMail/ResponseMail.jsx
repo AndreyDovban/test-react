@@ -1,4 +1,5 @@
 import styles from './ResponseMail.module.css';
+import { v4 as uuid } from 'uuid';
 
 export function ResponseMail() {
 	const data = {
@@ -24,5 +25,30 @@ export function ResponseMail() {
 			},
 		},
 	};
-	return <div className={styles.block}>{JSON.stringify(data, 0, 4)}</div>;
+
+	const prods = [];
+
+	for (const key in data.prod_names) {
+		const prod_items = [];
+		for (const key2 in data.super_obj[key]) {
+			prod_items.push(
+				<p key={uuid()}>
+					<span className={styles.span}> • </span>
+					<a target="_blank" href={'/api/downloads-' + data.super_obj[key][key2].file_uuid} rel="noreferrer">
+						{data.super_obj[key][key2].file_desc}
+					</a>
+				</p>,
+			);
+		}
+		prods.push(
+			<div className={styles.prod} key={uuid()}>
+				<div className={styles.prod_name}>{key}</div>
+				<ul>{prod_items}</ul>
+				<div>{data.prod_names[key]}</div>
+				<hr className={styles.hr} />
+			</div>,
+		);
+	}
+
+	return <div className={styles.block}>{prods}</div>;
 }
