@@ -1,10 +1,11 @@
 import styles from './App.module.css';
-import { ResponseMail } from './components';
+import { Note } from './components';
 
 export default function App() {
 	return (
 		<div className={styles.block}>
-			<ResponseMail />
+			<Note text={'Hello notofication'} />
+			<button>click</button>
 		</div>
 	);
 }

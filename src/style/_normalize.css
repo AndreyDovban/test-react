@@ -1,100 +1,72 @@
-html,
-body,
-#root {
-	scroll-behavior: smooth;
-
-	position: relative;
-
-	display: flex;
-	align-items: center;
-	justify-content: center;
-
-	width: 100%;
-	height: 100%;
-
-	color: var(--text);
-
-	background: var(--black);
-}
-
-path {
-	pointer-events: none;
-	-webkit-user-select: none;
+/* СТИЛИЗАЦИЯ ДОКУМЕНТА */
+* {
+	/* -webkit-user-select: none;
+	-khtml-user-select: none;
 	-moz-user-select: none;
 	-ms-user-select: none;
-	user-select: none;
-}
-
-* {
-	cursor: auto;
-	scrollbar-color: var(--bg-l) var(--black);
+	user-select: none; */
 
 	box-sizing: border-box;
 	margin: 0;
 	padding: 0;
-
-	font-family: Inter, sans-serif;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	text-size-adjust: 100%;
-	text-rendering: optimizelegibility;
-
-	font-synthesis: none;
-}
-
-svg * {
-	transition-property: fill stroke;
-}
-
-h1,
-h2,
-h3,
-h4,
-h5 {
-	margin: 0;
-	padding: 0;
-	font-weight: normal;
-	background: transparent !important;
 }
 
 /* Chrome/Edge/Safari */
 *::-webkit-scrollbar {
-	cursor: pointer;
-	width: 6px;
-	border-radius: 6px;
+	width: 8px;
+	height: 8px;
 }
 
 *::-webkit-scrollbar-track {
-	background: var(--black);
-	border-radius: 6px;
+	background: var(--grey-800);
 }
 
 *::-webkit-scrollbar-thumb {
-	cursor: pointer;
-	background-color: var(--red);
-	border-radius: 6px;
+	height: 30px;
+	background-color: var(--white);
+	border: 3px solid var(--grey-500);
+	border-radius: 5px;
 }
 
-a {
-	cursor: pointer;
+html,
+body,
+#root {
+	width: 100%;
+	height: 100%;
+	color: var(--grey-600);
+	background: var(--white);
+}
+
+#root {
 	position: relative;
-	color: inherit;
+
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	font-family: Inter, sans-serif;
+	font-weight: 400;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	line-height: 1.5;
+	text-size-adjust: 100%;
+	text-rendering: optimizelegibility;
+
+	transition: var(--transition);
+
+	font-synthesis: none;
+}
+
+a,
+button,
+input {
+	cursor: pointer;
 	text-decoration: none;
 }
 
-a::after {
-	content: '';
-
-	position: absolute;
-	bottom: -2px;
-	left: 0;
-	transform-origin: center;
-	transform: scale(0, 1);
-
-	width: 100%;
-	height: 3px;
-
-	background: var(--red);
+a:hover {
+	color: var(--red);
 }
 
 a:focus {
@@ -102,75 +74,6 @@ a:focus {
 	outline: none;
 }
 
-.not_effect:hover::after,
-.not_effect:focus::after {
-	transform: scale(0);
-}
-
-.loading {
-	font-size: 2rem;
-	color: var(--white);
-	text-align: center;
-}
-
-input,
-textarea,
-select,
-button {
-	font: inherit;
-}
-
-*::before,
-*::after {
-	box-sizing: border-box;
-}
-
-@media (hover: hover) {
-	a {
-		transition: var(--transition);
-	}
-
-	a::after {
-		transition: var(--transition);
-	}
-
-	a:hover {
-		color: var(--red);
-	}
-
-	a:hover::after,
-	a:focus::after {
-		transform: scale(1);
-	}
-}
-
-@media (hover: none) {
-	a {
-		transition: none;
-	}
-
-	a::after {
-		transition: none;
-	}
-
-	a:active {
-		color: var(--red);
-	}
-
-	a:active::after,
-	a:focus::after {
-		transform: scale(1);
-	}
-}
-
-@media (max-width: 1280px) {
-	a::after {
-		height: 2px;
-	}
-}
-
-@media (max-width: 768px) {
-	a::after {
-		bottom: -1px;
-	}
+.m {
+	fill: var(--grey-600);
 }
