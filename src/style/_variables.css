@@ -5,6 +5,7 @@
 	--red-active: #ff1030;
 	--shadow: #545454;
 	--white: #ffff;
+	--green: #00ff04;
 	--grey-50: #f9fafbff;
 	--grey-100: #f3f4f6ff;
 	--grey-200: #e5e7ebff;
@@ -17,6 +18,7 @@
 	--grey-900: #111827ff;
 	--grey-950: #030712ff;
 	--rad-10: 0.5rem;
+	--transition: all 0.3s ease;
 }
 
 /* Стиль для тёмной темы */
