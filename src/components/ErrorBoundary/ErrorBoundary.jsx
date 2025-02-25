@@ -12,10 +12,10 @@ export class ErrorBoundary extends Component {
 		return { hasError: true };
 	}
 
-	componentDidCatch(error, errorInfo) {
+	componentDidCatch(error, info) {
 		// Можно также сохранить информацию об ошибке в соответствующую службу журнала ошибок
 		// logErrorToMyService(error, errorInfo);
-		console.log(error, errorInfo);
+		console.log(error, info.componentStack);
 	}
 
 	render() {
