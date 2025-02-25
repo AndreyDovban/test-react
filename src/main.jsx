@@ -6,7 +6,7 @@ import { ErrorBoundary } from './components/ErrorBoundary/ErrorBoundary';
 
 const root = createRoot(document.getElementById('root'));
 
-console.log('1', document.querySelector('#root'));
+// console.log('1', document.querySelector('#root'));
 
 root.render(
 	<StrictMode>
@@ -15,4 +15,4 @@ root.render(
 		</ErrorBoundary>
 	</StrictMode>,
 );
-console.log('2', document.querySelector('#root'));
+// console.log('2', document.querySelector('#root'));
