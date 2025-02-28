@@ -40,16 +40,76 @@
 	justify-content: center;
 }
 
+.button {
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	padding: 0.5rem 1rem;
+
+	font-size: 0.75rem;
+	font-weight: 500;
+	color: var(--white);
+	text-decoration: none;
+	text-transform: uppercase;
+	letter-spacing: 1px;
+
+	background: var(--red);
+	border: 2px solid var(--red);
+	border-radius: 0.5rem;
+}
+
+.button svg {
+	height: 0.6rem;
+}
+
+.disabled {
+	pointer-events: none;
+	cursor: auto;
+	opacity: 0.6;
+}
+
+@media (hover: hover) {
+	.button,
+	.button svg {
+		transition: var(--transition);
+	}
+
+	.button:hover {
+		color: var(--text);
+		background: var(--white);
+	}
+
+	.button:hover svg {
+		fill: var(--text-gray);
+	}
+}
+
+@media (hover: none) {
+	.button,
+	.button svg {
+		transition: none;
+	}
+
+	.button:active {
+		color: var(--text);
+		background: var(--white);
+	}
+
+	.button:active svg {
+		fill: var(--text-gray);
+	}
+}
+
+.button_sec {
+	background: var(--grey-700);
+	border: 2px solid var(--grey-700);
+}
+
 .icon {
 	height: 2em;
-}
-
-.good {
-	fill: var(--green);
-}
-
-.bad {
-	fill: var(--red);
 }
 
 .hide {

@@ -8,34 +8,38 @@ const portal = document.querySelector('#portal');
 /**
  * Компонент запрос подтверждения
  * @param {string} text Текст уведомления
- * @param {{text:string, isOpen:boolean, isSuccessful: boolean}} note Состояние объекта уведомление
- * @param {function} setNote Изменение состояния объекта уведомление
+ * @param {{text:string, isOpen:boolean, func: function}} confirm Состояние объекта уведомление
+ * @param {function} setConfirm Изменение состояния объекта уведомление
  * @param {...any} props Неопределённое количество прараметров для работы с HTML элементами
  * @returns {JSXElement}
  */
-export function Comfirm({ note, setNote, ...props }) {
+export function Comfirm({ confirm, setConfirm, ...props }) {
+	function handlerExecFunction() {
+		confirm.func();
+		setConfirm({ ...confirm, isOpen: false, func: null });
+	}
+
 	return createPortal(
 		<div
 			className={cn(styles.block, {
-				[styles.hide]: !note.isOpen,
-				[styles.good]: note.isSuccessful == true,
-				[styles.bad]: note.isSuccessful == false,
+				[styles.hide]: !confirm.isOpen,
 			})}
-			onClick={() => setNote({ ...note, isOpen: false })}
 			{...props}
 		>
 			<div className={styles.text_block}>
-				<Alarm
-					className={cn(styles.icon, {
-						[styles.good]: note.isSuccessful == true,
-						[styles.bad]: note.isSuccessful == false,
-					})}
-				/>
-				<span className={styles.text}>{note.text}</span>
+				<Alarm className={styles.icon} />
+				<span className={styles.text}>{confirm.text}</span>
 			</div>
 			<div className={styles.buttons_block}>
-				<button>yes</button>
-				<button>no</button>
+				<button className={styles.button} onClick={handlerExecFunction}>
+					yes
+				</button>
+				<button
+					className={cn(styles.button, styles.button_sec)}
+					onClick={() => setConfirm({ ...confirm, isOpen: false, func: null })}
+				>
+					no
+				</button>
 			</div>
 		</div>,
 		portal,

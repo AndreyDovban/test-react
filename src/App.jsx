@@ -3,10 +3,14 @@ import styles from './App.module.css';
 import { Comfirm } from './components';
 
 export default function App() {
-	const [note, setNote] = useState({ text: 'How are you?' });
+	const [confirm, setConfirm] = useState({ text: 'How are you?' });
 
 	function handlerOpenConfirm() {
-		setNote({ ...note, isOpen: !note.isOpen });
+		setConfirm({ ...confirm, isOpen: !confirm.isOpen, func: testFunc });
+	}
+
+	function testFunc() {
+		console.log('work');
 	}
 
 	return (
@@ -14,7 +18,7 @@ export default function App() {
 			<button className={styles.button} onClick={handlerOpenConfirm}>
 				click
 			</button>
-			<Comfirm note={note} setNote={setNote} />
+			<Comfirm confirm={confirm} setConfirm={setConfirm} />
 		</div>
 	);
 }
