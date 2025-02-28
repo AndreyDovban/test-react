@@ -1,28 +1,20 @@
-import { useState, useEffect, useMemo } from 'react';
+import { useState } from 'react';
 import styles from './App.module.css';
+import { Comfirm } from './components';
 
 export default function App() {
-	const [data, setData] = useState({});
-	const [id, setId] = useState(1);
-	async function fetchData(id) {
-		const response = await fetch(`https://jsonplaceholder.typicode.com/posts/${id}`);
-		const data = await response.json();
-		return data;
-	}
-	useEffect(() => {
-		let res = fetchData(id);
-		setData(res);
-	}, [id]);
+	const [note, setNote] = useState({ text: 'How are you?' });
 
-	const title = useMemo(() => data.title, [data]);
+	function handlerOpenConfirm() {
+		setNote({ ...note, isOpen: !note.isOpen });
+	}
 
 	return (
 		<div className={styles.block}>
-			<h2>{title ? title : 'New Round'}</h2>
-			<h2>{id}</h2>
-			<button className={styles.button} onClick={() => setId(v => v + 1)}>
+			<button className={styles.button} onClick={handlerOpenConfirm}>
 				click
 			</button>
+			<Comfirm note={note} setNote={setNote} />
 		</div>
 	);
 }
