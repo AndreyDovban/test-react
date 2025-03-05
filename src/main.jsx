@@ -9,10 +9,10 @@ const root = createRoot(document.getElementById('root'));
 // console.log('1', document.querySelector('#root'));
 
 root.render(
-	<StrictMode>
-		<ErrorBoundary>
-			<App />
-		</ErrorBoundary>
-	</StrictMode>,
+	// <StrictMode>
+	<ErrorBoundary>
+		<App />
+	</ErrorBoundary>,
+	// </StrictMode>,
 );
 // console.log('2', document.querySelector('#root'));

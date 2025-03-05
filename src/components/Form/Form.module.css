@@ -83,6 +83,11 @@
 	transition: var(--transition);
 }
 
+.button:disabled {
+	pointer-events: none;
+	opacity: 0.2;
+}
+
 .button:hover {
 	color: var(--text);
 	background: var(--white);

@@ -1,29 +1,40 @@
 import { useForm } from 'react-hook-form';
 import styles from './Form.module.css';
+import { useEffect } from 'react';
 
-export function Form() {
+export function Form({ text }) {
 	const {
 		register,
 		handleSubmit,
-		watch,
-		formState: { errors },
-	} = useForm();
-	const onSubmit = data => console.log(data);
+		formState: { errors, isValid },
+		setValue,
+	} = useForm({
+		mode: 'all',
+	});
 
-	console.log(watch('example')); // watch input value by passing the name of it
+	function myFunc(data) {
+		console.log(data);
+	}
+
+	useEffect(() => {
+		setValue('exampleRequired', text, { shouldValidate: true });
+	}, [setValue, text]);
 
 	return (
-		/* "handleSubmit" will validate your inputs before invoking "onSubmit" */
-		<form className={styles.block} onSubmit={handleSubmit(onSubmit)}>
-			{/* register your input into the hook by invoking the "register" function */}
-			<input className={styles.inp} defaultValue="test" {...register('example')} />
+		<form className={styles.block} onSubmit={handleSubmit(myFunc)}>
+			<label className={styles.label}>
+				<span>Необязательное поле</span>
+				<input className={styles.inp} defaultValue="text" {...register('example')} />
+			</label>
 
-			{/* include validation with required or other standard HTML validation rules */}
-			<input className={styles.inp} {...register('exampleRequired', { required: true })} />
-			{/* errors will return when field validation fails  */}
-			{errors.exampleRequired && <span>This field is required</span>}
-
-			<input className={styles.button} type="submit" />
+			<label className={styles.label}>
+				<span>
+					Обязательное поле <span className={styles.star}>*</span>
+				</span>
+				<input className={styles.inp} {...register('exampleRequired', { required: true })} />
+				{errors.exampleRequired && <span className={styles.isError}>This field is required</span>}{' '}
+			</label>
+			<input disabled={!isValid} className={styles.button} type="submit" />
 		</form>
 	);
 }
