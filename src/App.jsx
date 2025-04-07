@@ -1,21 +1,17 @@
 import styles from './App.module.css';
-import { Form } from './components';
-import { useEffect, useState } from 'react';
+import isEqual from 'lodash/isEqual';
 
 export default function App() {
-	const [text, setText] = useState('');
+	const object = { a: 1 };
+	const other = { a: 1 };
 
-	useEffect(() => {
-		const timerId = setTimeout(() => {
-			setText('Example text');
-		}, 1000);
-		return () => clearTimeout(timerId);
-	}, []);
+	const result = isEqual(object, other);
+
+	console.log(result);
 
 	return (
 		<div className={styles.block}>
-			<Form text={text} />
-			{/* <button className={styles.button}>click</button> */}
+			<button className={styles.button}>click</button>
 		</div>
 	);
 }
